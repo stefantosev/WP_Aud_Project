@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <!--mora da stoi sekogas za thymeleaf da implementira-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Info about our request</h2>
+    <div>Ip adress: <th:block th:text="${ipAdress}"></th:block> </div>
+    <div>Client Agent: <th:block th:text="${clienAgent}"></th:block></div>
+    <h2>Categories</h2>
+
+
+    <!--rabota so listeners-->
+    <th:block>
+        <div>User Views: <th:block th:text="${userViews?:0}"></th:block></div>
+    </th:block>
+
+     <!--rabota so session-->
+    <h2>Info about user</h2>
+    <th:block th:if="${session.user!=null}">
+        <div>Username: <th:block th:text="${session.user.username}"></th:block> </div>
+        <div>Name: <th:block th:text="${session.user.ime}"></th:block></div>
+        <div>Surname: <th:block th:text="${session.user.prezime}"></th:block></div>
+
+        <form th:method="GET" th:action="@{/login}">
+            <input type="submit" th:value="Logout" >
+        </form>
+
+    </th:block>
+
+    <h2>Categories</h2>
+    <ul>
+        <li th:each="Category : ${categories}"> <th:block th:text="${Category.name}"> </th:block> (<th:block th:text="${Category.description}"> </th:block> )</li>
+    </ul>
+
+    <h3>Add New Category</h3>
+    <form th:method="POST" th:action="@{/servlet/thymeleaf/category}">
+        <label for="name">Name:</label><input id="name" type="text" name="name"/>
+        <label for="desc">Descritpion:</label><input id="desc" type="text" name="desc"/>
+        <input type="submit" value="Submit"/>
+    </form>
+
+</body>
+</html>
