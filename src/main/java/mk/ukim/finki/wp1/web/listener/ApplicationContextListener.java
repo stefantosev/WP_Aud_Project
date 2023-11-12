@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp1.web.servlet.listener;
+package mk.ukim.finki.wp1.web.listener;
 
 
 import jakarta.servlet.ServletContextEvent;

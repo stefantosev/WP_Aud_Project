@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp1.web.servlet.filters;
+package mk.ukim.finki.wp1.web.filters;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -34,7 +34,7 @@ public class LoginFilter implements Filter {
         User user = (User)request.getSession().getAttribute("user");
         String path = request.getServletPath();
 
-        if(!"/login".equals(path)  && !"/main.css".equals(path) && user == null){   //ako ne e login da ne ne nosi na drugite
+        if(!"/login".equals(path)  && !"/register".equals(path) && !"/main.css".equals(path) && user == null){   //ako ne e login da ne ne nosi na drugite
             response.sendRedirect("/login");
         }else{
             filterChain.doFilter(servletRequest, servletResponse);
